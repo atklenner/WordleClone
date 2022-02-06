@@ -1,0 +1,124 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #121213;
+  margin: 0;
+  height: 100vh;
+}
+
+/***************
+    Layout 
+***************/
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+/* Header */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #3a3a3c;
+  padding: 0.5em 0.25em;
+}
+
+h1 {
+  color: #d7dadc;
+  margin: 0;
+}
+
+.header-btn {
+  color: #565758;
+  background-color: transparent;
+  border: none;
+  font-size: 1.25rem;
+  margin: 0;
+  cursor: pointer;
+  transition: 50ms transform ease-in-out;
+}
+
+.header-btn:hover,
+.header-btn:focus {
+  color: #818384;
+  transform: scale(1.1);
+}
+
+/* Game Board */
+
+.game-board {
+  margin: auto auto;
+}
+
+.game-row {
+  display: flex;
+}
+
+.game-tile {
+  /* padding: 2rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 4rem;
+  border: 2px solid #3a3a3c;
+  margin: 0.25rem;
+  color: #d7dadc;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.absent {
+  background-color: #3a3a3c;
+}
+
+.present {
+  background-color: #b59f3b;
+}
+
+.correct {
+  background-color: #538d4e;
+}
+
+/* Keyboard */
+
+.keyboard {
+  margin: 0.5em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.keyboard-row {
+  margin-bottom: 0.25rem;
+}
+
+.keyboard-btn {
+  color: #d7dadc;
+  background-color: #818384;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 50ms background-color ease-in-out;
+  height: 3rem;
+  width: 2rem;
+}
+
+.keyboard-btn:hover,
+.keyboard-btn:focus {
+  background-color: #565758;
+  transform: scale(1.1);
+}
+
+.keyboard-btn-wide {
+  width: 3rem;
+}
+
+/***************
+    Modifiers 
+***************/
