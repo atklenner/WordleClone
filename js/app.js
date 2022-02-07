@@ -1,9 +1,12 @@
 const dictionary = ["penis", "farts", "boobs", "butts", "pimps"];
+const randomNumber = Math.floor(Math.random() * dictionary.length);
 const correctAnswer = "penis";
 const alphabet = /([A-Za-z])/g;
 let currentGuess = 0;
 let guess = "";
 const answers = [];
+
+console.log(randomNumber);
 
 const buttons = document.querySelectorAll("[data-letter]");
 buttons.forEach((button) => {
@@ -56,6 +59,7 @@ function submitGuess(string) {
     addGuessToAnswers(string);
     currentGuess++;
     refreshBoard(answers);
+    refreshKeyboard(answers);
     if (string === correctAnswer) {
       console.log("YOU WIN");
     }
@@ -94,6 +98,22 @@ function refreshBoard(answerArray) {
       tiles[index].classList.add("absent");
     }
     tiles[index].textContent = letter.letter.toUpperCase();
+  });
+}
+
+function refreshKeyboard(answerArray) {
+  const buttons = document.querySelectorAll("[data-letter]");
+  buttons.forEach((button) => {
+    const answer = answerArray.find(
+      (answer) => answer.letter === button.dataset.letter
+    );
+    if (answer && answer.isCorrect) {
+      button.classList.add("correct");
+    } else if (answer && answer.isInWord) {
+      button.classList.add("present");
+    } else if (answer) {
+      button.classList.add("absent");
+    }
   });
 }
 

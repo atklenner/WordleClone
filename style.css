@@ -73,18 +73,6 @@ h1 {
   font-size: 2rem;
 }
 
-.absent {
-  background-color: #3a3a3c;
-}
-
-.present {
-  background-color: #b59f3b;
-}
-
-.correct {
-  background-color: #538d4e;
-}
-
 /* Keyboard */
 
 .keyboard {
@@ -122,3 +110,15 @@ h1 {
 /***************
     Modifiers 
 ***************/
+
+.absent {
+  background-color: #3a3a3c;
+}
+
+.present {
+  background-color: #b59f3b;
+}
+
+.correct {
+  background-color: #538d4e;
+}
