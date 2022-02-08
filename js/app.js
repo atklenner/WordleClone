@@ -13,7 +13,7 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     if (button.dataset.letter === "backspace") {
       backspace();
-      printGuessLetters(guess);
+      printGuessLetters(guess, false);
       return;
     }
     if (button.dataset.letter === "enter") {
@@ -21,14 +21,14 @@ buttons.forEach((button) => {
       return;
     }
     addLetter(button.dataset.letter);
-    printGuessLetters(guess);
+    printGuessLetters(guess, true);
   });
 });
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Backspace") {
     backspace();
-    printGuessLetters(guess);
+    printGuessLetters(guess, false);
     return;
   }
   if (event.key === "Enter") {
@@ -40,7 +40,7 @@ document.addEventListener("keydown", (event) => {
   }
   if (event.key.match(alphabet) && event.key.length === 1) {
     addLetter(event.key.toLowerCase());
-    printGuessLetters(guess);
+    printGuessLetters(guess, true);
   }
 });
 
@@ -86,18 +86,25 @@ function addGuessToAnswers(string) {
 
 function refreshBoard(answerArray) {
   const tiles = document.querySelectorAll(".game-tile");
-  tiles.forEach((tile) => {
-    tile.textContent = "";
-  });
+  const offset = currentGuess * 5;
+  // tiles.forEach((tile) => {
+  //   tile.textContent = "";
+  // });
   answerArray.forEach((letter, index) => {
-    if (letter.isCorrect) {
-      tiles[index].classList.add("correct");
-    } else if (letter.isInWord && !letter.isCorrect) {
-      tiles[index].classList.add("present");
-    } else {
-      tiles[index].classList.add("absent");
+    if (true) {
+      tiles[index].classList.add("game-tile-reveal");
+      setTimeout(() => {
+        if (letter.isCorrect) {
+          tiles[index].classList.add("correct");
+        } else if (letter.isInWord && !letter.isCorrect) {
+          tiles[index].classList.add("present");
+        } else {
+          tiles[index].classList.add("absent");
+        }
+        tiles[index].classList.remove("game-tile-reveal");
+      }, 500);
     }
-    tiles[index].textContent = letter.letter.toUpperCase();
+    // tiles[index].textContent = letter.letter.toUpperCase();
   });
 }
 
@@ -117,10 +124,16 @@ function refreshKeyboard(answerArray) {
   });
 }
 
-function printGuessLetters(string) {
+function printGuessLetters(string, bool) {
   const offset = currentGuess * 5;
   const tiles = document.querySelectorAll(".game-tile");
   for (let i = 0; i < 5; i++) {
     tiles[i + offset].textContent = string.charAt(i).toUpperCase();
+  }
+  if (bool) {
+    tiles[string.length + offset - 1].classList.add("new-letter");
+    setTimeout(() => {
+      tiles[string.length + offset - 1].classList.remove("new-letter");
+    }, 50);
   }
 }

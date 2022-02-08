@@ -84,6 +84,12 @@ header {
   font-weight: bold;
   font-size: 2rem;
   aspect-ratio: 1/1;
+  transition: 100ms scale;
+  transition: 0.5s rotate;
+}
+
+.game-tile-reveal {
+  rotate: x 90deg;
 }
 
 /* Keyboard */
@@ -140,4 +146,8 @@ header {
 
 .correct {
   background-color: #538d4e;
+}
+
+.new-letter {
+  transform: scale(1.1);
 }
