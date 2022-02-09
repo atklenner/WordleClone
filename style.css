@@ -84,13 +84,13 @@ header {
   font-weight: 600;
   font-size: 2rem;
   aspect-ratio: 1/1;
-  /* transition: 0.5s rotate; */
 }
 
 .flip-in {
   animation-name: flip-in;
-  animation-duration: 250ms;
+  animation-duration: 500ms;
   animation-timing-function: ease-in;
+  animation-delay: calc(var(--order) * 250ms);
 }
 
 @keyframes flip-in {
@@ -98,19 +98,7 @@ header {
     transform: rotateX(0deg);
   }
 
-  to {
-    transform: rotateX(-90deg);
-  }
-}
-
-.flip-out {
-  animation-name: flip-out;
-  animation-duration: 250ms;
-  animation-timing-function: ease-in;
-}
-
-@keyframes flip-out {
-  from {
+  50% {
     transform: rotateX(-90deg);
   }
 
@@ -153,8 +141,7 @@ header {
 .keyboard-row {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  gap: 0.5em;
+  justify-content: center;
   margin-bottom: 0.5em;
   flex: 1;
 }
@@ -166,18 +153,18 @@ header {
   border-radius: 4px;
   cursor: pointer;
   transition: 50ms background-color ease-in-out;
-  flex: 1;
+  flex: 0 1 43px;
   font-size: 1rem;
+  margin-right: 0.5em;
 }
 
 .keyboard-btn:hover,
 .keyboard-btn:focus {
-  background-color: #565758;
   transform: scale(1.1);
 }
 
 .keyboard-btn-wide {
-  flex: 2;
+  flex: 1 2 43px;
 }
 
 /***************

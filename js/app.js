@@ -86,21 +86,17 @@ function addGuessToAnswers(string) {
 
 function refreshBoard(answerArray) {
   const tiles = document.querySelectorAll(".game-tile");
-  const offset = currentGuess * 5;
   answerArray.forEach((letter, index) => {
-    if (true) {
-      tiles[index].classList.add("flip-in");
-      setTimeout(() => {
-        if (letter.isCorrect) {
-          tiles[index].classList.add("correct");
-        } else if (letter.isInWord && !letter.isCorrect) {
-          tiles[index].classList.add("present");
-        } else {
-          tiles[index].classList.add("absent");
-        }
-        tiles[index].classList.add("flip-out");
-      }, 250);
-    }
+    tiles[index].classList.add("flip-in");
+    setTimeout(() => {
+      if (letter.isCorrect) {
+        tiles[index].classList.add("correct");
+      } else if (letter.isInWord && !letter.isCorrect) {
+        tiles[index].classList.add("present");
+      } else {
+        tiles[index].classList.add("absent");
+      }
+    }, (index % 5) * 250 + 250);
   });
 }
 
