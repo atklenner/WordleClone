@@ -87,12 +87,9 @@ function addGuessToAnswers(string) {
 function refreshBoard(answerArray) {
   const tiles = document.querySelectorAll(".game-tile");
   const offset = currentGuess * 5;
-  // tiles.forEach((tile) => {
-  //   tile.textContent = "";
-  // });
   answerArray.forEach((letter, index) => {
     if (true) {
-      tiles[index].classList.add("game-tile-reveal");
+      tiles[index].classList.add("flip-in");
       setTimeout(() => {
         if (letter.isCorrect) {
           tiles[index].classList.add("correct");
@@ -101,10 +98,9 @@ function refreshBoard(answerArray) {
         } else {
           tiles[index].classList.add("absent");
         }
-        tiles[index].classList.remove("game-tile-reveal");
-      }, 500);
+        tiles[index].classList.add("flip-out");
+      }, 250);
     }
-    // tiles[index].textContent = letter.letter.toUpperCase();
   });
 }
 
@@ -134,6 +130,6 @@ function printGuessLetters(string, bool) {
     tiles[string.length + offset - 1].classList.add("new-letter");
     setTimeout(() => {
       tiles[string.length + offset - 1].classList.remove("new-letter");
-    }, 50);
+    }, 100);
   }
 }
