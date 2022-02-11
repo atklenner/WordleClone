@@ -128,8 +128,12 @@
         </div>
       </div>
     </div>
+    <div class="game-over">
+      <p class="winning-text"></p>
+      <!-- <button class="play-again-btn">Play Again</button> -->
+    </div>
     <div class="overlay how-to-play-overlay">
-      <div class="container">
+      <div class="overlay-container">
         <div class="overlay-header">
           <h1>HOW TO PLAY</h1>
           <button class="how-to-play-exit header-btn">
@@ -148,8 +152,32 @@
           </p>
           <div class="examples">
             <p><strong>EXAMPLES</strong></p>
-            <div class="example"></div>
+            <div class="example">
+              <div class="example-tile correct">W</div>
+              <div class="example-tile">E</div>
+              <div class="example-tile">A</div>
+              <div class="example-tile">R</div>
+              <div class="example-tile">Y</div>
+            </div>
+            <p>The letter W is in the word and in the correct spot.</p>
+            <div class="example">
+              <div class="example-tile">P</div>
+              <div class="example-tile present">I</div>
+              <div class="example-tile">L</div>
+              <div class="example-tile">L</div>
+              <div class="example-tile">S</div>
+            </div>
+            <p>The letter I is in the word but in the wrong spot.</p>
+            <div class="example">
+              <div class="example-tile">V</div>
+              <div class="example-tile">A</div>
+              <div class="example-tile">G</div>
+              <div class="example-tile absent">U</div>
+              <div class="example-tile">E</div>
+            </div>
+            <p>The letter U is not in the word in any spot.</p>
           </div>
+          <p>Please refresh the page if you want to play again.</p>
         </div>
       </div>
     </div>

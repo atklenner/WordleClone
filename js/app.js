@@ -1,12 +1,18 @@
-import { solutions } from "./solutions.js"; // only want to bother with the official solutions not all possible guesses
-const randomNumber = Math.floor(Math.random() * solutions.length);
-const correctAnswer = solutions[randomNumber];
+import { solutions } from "./solutions.js";
+import { acceptableGuesses } from "./acceptableGuesses.js";
+let correctAnswer = "";
 const alphabet = /([A-Za-z])/g;
 let currentGuess = 0;
 let guess = "";
-const answers = [];
+let answers = [];
 
-console.log(correctAnswer);
+function getWord() {
+  const randomNumber = Math.floor(Math.random() * solutions.length);
+  correctAnswer = solutions[randomNumber];
+  console.log(correctAnswer);
+}
+
+getWord();
 
 const buttons = document.querySelectorAll("[data-letter]");
 buttons.forEach((button) => {
@@ -55,22 +61,32 @@ function backspace() {
 }
 
 function submitGuess(string) {
-  if (guess.length === 5 && currentGuess <= 5 && solutions.includes(string)) {
+  if (!acceptableGuesses.includes(string)) {
+    console.log("guess is not valid");
+  }
+  // if (guess.length < 5) {
+  //   console.log("guess is too short");
+  // }
+  if (
+    guess.length === 5 &&
+    currentGuess <= 6 &&
+    acceptableGuesses.includes(string)
+  ) {
     addGuessToAnswers(string);
     currentGuess++;
     refreshBoard(answers);
     refreshKeyboard(answers);
     if (string === correctAnswer) {
       console.log("YOU WIN");
+      gameOverPopup(true);
     }
     guess = "";
-  } else if (currentGuess === 5) {
-    console.log("GAME OVER");
-  } else if (!solutions.includes(string)) {
-    console.log("guess is not valid");
-  } else {
-    console.log("guess is too short");
   }
+  if (currentGuess === 6) {
+    console.log("GAME OVER");
+    gameOverPopup(false);
+  }
+  console.log(currentGuess);
 }
 
 function addGuessToAnswers(string) {
@@ -116,6 +132,28 @@ function refreshKeyboard(answerArray) {
   });
 }
 
+function gameOverPopup(bool) {
+  const popup = document.querySelector(".game-over");
+  const text = document.querySelector(".winning-text");
+  const button = document.querySelector(".play-again-btn");
+  if (bool) {
+    text.textContent = "You Win!";
+  } else {
+    text.textContent = "The answer was '" + correctAnswer + "'";
+  }
+  popup.classList.add("slide-in");
+  // button.addEventListener("click", () => {
+  //   currentGuess = 0;
+  //   guess = "";
+  //   answers = [];
+  //   getWord();
+  //   refreshBoard(answers);
+  //   refreshKeyboard(answers);
+  //   popup.classList.remove("slide-in");
+  //   button.removeEventListener("click");
+  // });
+}
+
 function printGuessLetters(string, bool) {
   const offset = currentGuess * 5;
   const tiles = document.querySelectorAll(".game-tile");
@@ -134,14 +172,12 @@ const howToPlayOverlay = document.querySelector(".how-to-play-overlay");
 const howToPlayOpen = document.querySelector(".how-to-play-open");
 const howToPlayExit = document.querySelector(".how-to-play-exit");
 
-// howToPlayOpen.onclick = () => (howToPlayOverlay.style.display = "flex");
-// howToPlayExit.onclick = () => (howToPlayOverlay.style.display = "none");
 howToPlayOpen.onclick = () => howToPlayOverlay.classList.add("slide-in");
 howToPlayExit.onclick = () => howToPlayOverlay.classList.remove("slide-in");
 
-const settingsOverlay = document.querySelector(".settings-overlay");
-const settingsOpen = document.querySelector(".settings-open");
-const settingsExit = document.querySelector(".settings-exit");
+// const settingsOverlay = document.querySelector(".settings-overlay");
+// const settingsOpen = document.querySelector(".settings-open");
+// const settingsExit = document.querySelector(".settings-exit");
 
-settingsOpen.onclick = () => (settingsOverlay.style.display = "flex");
-settingsExit.onclick = () => (settingsOverlay.style.display = "none");
+// settingsOpen.onclick = () => (settingsOverlay.style.display = "flex");
+// settingsExit.onclick = () => (settingsOverlay.style.display = "none");

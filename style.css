@@ -174,22 +174,6 @@ header {
 }
 
 /***************
-    Modifiers 
-***************/
-
-.absent {
-  background-color: #3a3a3c;
-}
-
-.present {
-  background-color: #b59f3b;
-}
-
-.correct {
-  background-color: #538d4e;
-}
-
-/***************
     Overlay 
 ***************/
 
@@ -205,12 +189,78 @@ header {
   transition: all 100ms linear;
 }
 
-.slide-in {
-  display: flex;
-  opacity: 1;
+.overlay-container {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .overlay-header {
   display: flex;
   justify-content: space-between;
+}
+
+.examples {
+  border-top: 1px solid #3a3a3c;
+  border-bottom: 1px solid #3a3a3c;
+}
+
+.example {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 700;
+  justify-content: start;
+}
+
+.example-tile {
+  border: 2px solid #3a3a3c;
+  text-align: center;
+  margin-right: 0.1em;
+  flex: 0 0 38px;
+}
+
+.game-over {
+  display: none;
+  position: absolute;
+  left: calc(50% - 75px);
+  top: 10%;
+  background-color: #d7dadc;
+  color: #121213;
+  font-weight: 700;
+  text-align: center;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.play-again-btn {
+  margin-bottom: 1em;
+  background-color: #121213;
+  color: #d7dadc;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em 1.25em;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.slide-in {
+  display: block;
+  opacity: 1;
+}
+
+/***************
+    Modifiers 
+***************/
+
+.absent {
+  background-color: #3a3a3c;
+}
+
+.present {
+  background-color: #b59f3b;
+  border: 2px solid #b59f3b;
+}
+
+.correct {
+  background-color: #538d4e;
+  border: 2px solid #538d4e;
 }
