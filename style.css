@@ -165,9 +165,9 @@ header {
   font-size: 1rem;
 }
 
-.keyboard-btn:hover {
+/* .keyboard-btn:hover {
   transform: scale(1.1);
-}
+} */
 
 .keyboard-btn-wide {
   flex: 1 2 43px;
@@ -179,18 +179,48 @@ header {
 
 .overlay {
   position: absolute;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   top: 0;
   left: 0;
   opacity: 0;
   background-color: #121213;
   display: none;
-  transition: all 100ms linear;
+}
+
+.slide-in {
+  display: block;
+  opacity: 1;
+  animation-timing-function: linear;
+  animation-name: slide-in;
+  animation-duration: 100ms;
+}
+
+.slide-out {
+  opacity: 1;
+  animation-timing-function: linear;
+  animation-name: slide-in;
+  animation-duration: 100ms;
+  animation-direction: reverse;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    height: calc(100% - 30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    height: 100%;
+  }
 }
 
 .overlay-container {
   max-width: 500px;
+  padding-left: 0.5em;
   margin: 0 auto;
 }
 
@@ -242,9 +272,22 @@ header {
   cursor: pointer;
 }
 
-.slide-in {
+.popup {
   display: block;
   opacity: 1;
+  animation-timing-function: linear;
+  animation-name: popup;
+  animation-duration: 200ms;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }
 
 /***************
@@ -263,4 +306,56 @@ header {
 .correct {
   background-color: #538d4e;
   border: 2px solid #538d4e;
+}
+
+.shake {
+  animation-name: shake;
+  animation-timing-function: ease;
+  animation-duration: 600ms;
+}
+
+@keyframes shake {
+  from {
+    transform: none;
+  }
+
+  10% {
+    transform: translateX(-1px);
+  }
+
+  20% {
+    transform: translateX(2px);
+  }
+
+  30% {
+    transform: translateX(-4px);
+  }
+
+  40% {
+    transform: translateX(4px);
+  }
+
+  50% {
+    transform: translateX(-4px);
+  }
+
+  60% {
+    transform: translateX(4px);
+  }
+
+  70% {
+    transform: translateX(-4px);
+  }
+
+  80% {
+    transform: translateX(2px);
+  }
+
+  90% {
+    transform: translateX(-1px);
+  }
+
+  to {
+    transform: none;
+  }
 }

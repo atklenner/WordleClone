@@ -62,11 +62,8 @@ function backspace() {
 
 function submitGuess(string) {
   if (!acceptableGuesses.includes(string)) {
-    console.log("guess is not valid");
+    invalidGuess();
   }
-  // if (guess.length < 5) {
-  //   console.log("guess is too short");
-  // }
   if (
     guess.length === 5 &&
     currentGuess <= 6 &&
@@ -132,26 +129,54 @@ function refreshKeyboard(answerArray) {
   });
 }
 
+function invalidGuess() {
+  const rows = document.querySelectorAll(".game-row");
+  rows[currentGuess].classList.add("shake");
+  setTimeout(() => {
+    rows[currentGuess].classList.remove("shake");
+  }, 600);
+}
+
+function resetBoard() {
+  const tiles = document.querySelectorAll(".game-tile");
+  tiles.forEach((tile, index) => {
+    tile.classList.remove("flip-in");
+    tile.classList.remove("correct");
+    tile.classList.remove("present");
+    tile.classList.remove("absent");
+    tile.textContent = "";
+  });
+}
+
+function resetKeyboard() {
+  const buttons = document.querySelectorAll("[data-letter]");
+  buttons.forEach((button) => {
+    button.classList.remove("correct");
+    button.classList.remove("present");
+    button.classList.remove("absent");
+  });
+}
+
+const button = document.querySelector(".play-again-btn");
+const popup = document.querySelector(".game-over");
+button.addEventListener("click", () => {
+  currentGuess = 0;
+  guess = "";
+  answers = [];
+  getWord();
+  resetBoard();
+  resetKeyboard();
+  popup.classList.remove("popup");
+});
+
 function gameOverPopup(bool) {
-  const popup = document.querySelector(".game-over");
   const text = document.querySelector(".winning-text");
-  const button = document.querySelector(".play-again-btn");
   if (bool) {
     text.textContent = "You Win!";
   } else {
     text.textContent = "The answer was '" + correctAnswer + "'";
   }
-  popup.classList.add("slide-in");
-  // button.addEventListener("click", () => {
-  //   currentGuess = 0;
-  //   guess = "";
-  //   answers = [];
-  //   getWord();
-  //   refreshBoard(answers);
-  //   refreshKeyboard(answers);
-  //   popup.classList.remove("slide-in");
-  //   button.removeEventListener("click");
-  // });
+  popup.classList.add("popup");
 }
 
 function printGuessLetters(string, bool) {
@@ -171,9 +196,34 @@ function printGuessLetters(string, bool) {
 const howToPlayOverlay = document.querySelector(".how-to-play-overlay");
 const howToPlayOpen = document.querySelector(".how-to-play-open");
 const howToPlayExit = document.querySelector(".how-to-play-exit");
+const tiles = document.querySelectorAll(".animate");
+const backgrounds = ["correct", "present", "absent"];
 
-howToPlayOpen.onclick = () => howToPlayOverlay.classList.add("slide-in");
-howToPlayExit.onclick = () => howToPlayOverlay.classList.remove("slide-in");
+howToPlayOpen.onclick = () => {
+  howToPlayOverlay.classList.add("slide-in");
+  setTimeout(() => {
+    tiles.forEach((tile, index) => {
+      tile.classList.add(backgrounds[index]);
+    });
+  }, 350);
+  setTimeout(() => {
+    tiles.forEach((tile) => {
+      tile.classList.add("flip-in");
+    });
+  }, 100);
+};
+
+howToPlayExit.onclick = () => {
+  howToPlayOverlay.classList.add("slide-out");
+  howToPlayOverlay.classList.remove("slide-in");
+  tiles.forEach((tile, index) => {
+    tile.classList.remove("flip-in");
+    tile.classList.remove(backgrounds[index]);
+  });
+  setTimeout(() => {
+    howToPlayOverlay.classList.remove("slide-out");
+  }, 100);
+};
 
 // const settingsOverlay = document.querySelector(".settings-overlay");
 // const settingsOpen = document.querySelector(".settings-open");
