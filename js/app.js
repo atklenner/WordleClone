@@ -1,12 +1,12 @@
-const dictionary = ["penis", "farts", "boobs", "butts", "pimps"];
-const randomNumber = Math.floor(Math.random() * dictionary.length);
-const correctAnswer = "penis";
+import { solutions } from "./solutions.js"; // only want to bother with the official solutions not all possible guesses
+const randomNumber = Math.floor(Math.random() * solutions.length);
+const correctAnswer = solutions[randomNumber];
 const alphabet = /([A-Za-z])/g;
 let currentGuess = 0;
 let guess = "";
 const answers = [];
 
-console.log(randomNumber);
+console.log(correctAnswer);
 
 const buttons = document.querySelectorAll("[data-letter]");
 buttons.forEach((button) => {
@@ -55,7 +55,7 @@ function backspace() {
 }
 
 function submitGuess(string) {
-  if (guess.length === 5 && currentGuess <= 5 && dictionary.includes(string)) {
+  if (guess.length === 5 && currentGuess <= 5 && solutions.includes(string)) {
     addGuessToAnswers(string);
     currentGuess++;
     refreshBoard(answers);
@@ -66,7 +66,7 @@ function submitGuess(string) {
     guess = "";
   } else if (currentGuess === 5) {
     console.log("GAME OVER");
-  } else if (!dictionary.includes(string)) {
+  } else if (!solutions.includes(string)) {
     console.log("guess is not valid");
   } else {
     console.log("guess is too short");
@@ -129,3 +129,19 @@ function printGuessLetters(string, bool) {
     }, 100);
   }
 }
+
+const howToPlayOverlay = document.querySelector(".how-to-play-overlay");
+const howToPlayOpen = document.querySelector(".how-to-play-open");
+const howToPlayExit = document.querySelector(".how-to-play-exit");
+
+// howToPlayOpen.onclick = () => (howToPlayOverlay.style.display = "flex");
+// howToPlayExit.onclick = () => (howToPlayOverlay.style.display = "none");
+howToPlayOpen.onclick = () => howToPlayOverlay.classList.add("slide-in");
+howToPlayExit.onclick = () => howToPlayOverlay.classList.remove("slide-in");
+
+const settingsOverlay = document.querySelector(".settings-overlay");
+const settingsOpen = document.querySelector(".settings-open");
+const settingsExit = document.querySelector(".settings-exit");
+
+settingsOpen.onclick = () => (settingsOverlay.style.display = "flex");
+settingsExit.onclick = () => (settingsOverlay.style.display = "none");

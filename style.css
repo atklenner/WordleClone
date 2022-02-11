@@ -1,6 +1,13 @@
+:root {
+  --absent: ##3a3a3c;
+  --present: ##b59f3b;
+  --correct: ##538d4e;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #121213;
+  color: #d7dadc;
   margin: 0;
   height: 100vh;
   box-sizing: border-box;
@@ -143,6 +150,7 @@ header {
   display: flex;
   justify-content: center;
   margin-bottom: 0.5em;
+  gap: 0.5em;
   flex: 1;
 }
 
@@ -155,11 +163,9 @@ header {
   transition: 50ms background-color ease-in-out;
   flex: 0 1 43px;
   font-size: 1rem;
-  margin-right: 0.5em;
 }
 
-.keyboard-btn:hover,
-.keyboard-btn:focus {
+.keyboard-btn:hover {
   transform: scale(1.1);
 }
 
@@ -181,4 +187,30 @@ header {
 
 .correct {
   background-color: #538d4e;
+}
+
+/***************
+    Overlay 
+***************/
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #121213;
+  display: none;
+  transition: all 100ms linear;
+}
+
+.slide-in {
+  display: flex;
+  opacity: 1;
+}
+
+.overlay-header {
+  display: flex;
+  justify-content: space-between;
 }

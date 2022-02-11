@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="./js/app.js" defer></script>
+    <script src="./js/app.js" defer type="module"></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <meta property="og:title" content="Wordle 2" />
     <meta property="og:site_name" content="Wordle 2" />
@@ -27,13 +27,17 @@
   <body>
     <div class="container">
       <header>
-        <button class="header-btn">
+        <button class="header-btn how-to-play-open">
           <i class="far fa-question-circle"></i>
         </button>
         <h1 class="game-title">WORDLE 2</h1>
         <div>
-          <button class="header-btn"><i class="far fa-chart-bar"></i></button>
-          <button class="header-btn"><i class="fas fa-cog"></i></button>
+          <button class="header-btn stats-open">
+            <i class="far fa-chart-bar"></i>
+          </button>
+          <button class="header-btn settings-open">
+            <i class="fas fa-cog"></i>
+          </button>
         </div>
       </header>
       <div class="game-board">
@@ -121,6 +125,64 @@
           >
             <i class="fas fa-backspace"></i>
           </button>
+        </div>
+      </div>
+    </div>
+    <div class="overlay how-to-play-overlay">
+      <div class="container">
+        <div class="overlay-header">
+          <h1>HOW TO PLAY</h1>
+          <button class="how-to-play-exit header-btn">
+            <i class="fa-solid fa-xmark"></i>EXIT
+          </button>
+        </div>
+        <div class="overlay-body">
+          <p>Guess the <strong>WORDLE</strong> in 6 tries.</p>
+          <p>
+            Each guess must be a valid 5 letter word. Hit the enter button to
+            submit.
+          </p>
+          <p>
+            After each guess, the color of the tiles will change to show how
+            close your guess was to the word.
+          </p>
+          <div class="examples">
+            <p><strong>EXAMPLES</strong></p>
+            <div class="example"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay settings-overlay">
+      <div class="container">
+        <div class="overlay-header">
+          <h1>SETTINGS</h1>
+          <button class="settings-exit header-btn">
+            <i class="fa-solid fa-xmark"></i>EXIT
+          </button>
+        </div>
+        <div class="setting-section">
+          <p>Hard Mode</p>
+          <p>Any revealed hints must be used in subsequent guesses</p>
+          Not Implemented
+        </div>
+        <div class="setting-section">
+          <p>Hard Mode</p>
+          <p>Any revealed hints must be used in subsequent guesses</p>
+          Not Implemented
+        </div>
+        <div class="setting-section">
+          <p>Dark Theme</p>
+          Not Implemented
+        </div>
+        <div class="setting-section">
+          <p>Color Blind Mode</p>
+          <p>High Contrast Colors</p>
+          Not Implemented
+        </div>
+        <div class="setting-section">
+          <p>Feedback</p>
+          Do Not Email Me
         </div>
       </div>
     </div>
