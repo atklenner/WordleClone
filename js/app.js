@@ -1,5 +1,6 @@
 import { solutions } from "./solutions.js";
 import { acceptableGuesses } from "./acceptableGuesses.js";
+import "./viewport.js";
 let correctAnswer = "";
 const alphabet = /([A-Za-z])/g;
 let currentGuess = 0;
@@ -74,16 +75,13 @@ function submitGuess(string) {
     refreshBoard(answers);
     refreshKeyboard(answers);
     if (string === correctAnswer) {
-      console.log("YOU WIN");
       gameOverPopup(true);
     }
     guess = "";
   }
   if (currentGuess === 6) {
-    console.log("GAME OVER");
     gameOverPopup(false);
   }
-  console.log(currentGuess);
 }
 
 function addGuessToAnswers(string) {
