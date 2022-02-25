@@ -7,6 +7,9 @@ let currentGuess = 0;
 let guess = "";
 let answers = [];
 
+// to see the game
+// https://mottaquikarim.github.io/wordle_timemachine/v2.html?d=2021-06-19
+
 function getWord() {
   const randomNumber = Math.floor(Math.random() * solutions.length);
   correctAnswer = solutions[randomNumber];
