@@ -1,9 +1,11 @@
 import { acceptableGuesses } from "./acceptableGuesses.js";
+import { Stats } from "./Stats.js";
 import { Keyboard } from "./Keyboard.js";
 
 export class GameBoard {
   constructor(answer) {
     this.keyboard = new Keyboard();
+    this.stats = new Stats();
     this.tiles = document.querySelectorAll(".game-tile");
     this.rows = document.querySelectorAll(".game-row");
     this.currentGuess = 0;
@@ -112,8 +114,10 @@ export class GameBoard {
     const text = document.querySelector(".winning-text");
     if (bool) {
       text.textContent = "You Win!";
+      this.stats.addWin(this.currentGuess);
     } else {
       text.textContent = "The answer was '" + this.correctAnswer + "'";
+      this.stats.addLoss();
     }
     popup.classList.add("popup");
   }

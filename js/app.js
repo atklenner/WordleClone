@@ -98,3 +98,11 @@ howToPlayExit.onclick = () => {
 //   settingsOverlay.classList.remove("slide-in");
 //   settingsOverlay.classList.remove("slide-out");
 // };
+
+// const statsOverlay = document.querySelector(".stats-overlay");
+// const statsOpen = document.querySelector(".stats-open");
+// const statsClose = document.querySelector(".stats-close");
+
+// statsOverlay.onclick = () => {
+//   stats.statsOverlay.classList.add("slide-in");
+// };
