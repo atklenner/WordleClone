@@ -26,7 +26,7 @@ buttons.forEach((button) => {
       return;
     }
     gameboard.addLetter(button.dataset.letter);
-    gameboard.printGuessLetters(guess, true);
+    gameboard.printGuessLetters(gameboard.guess, true);
   });
 });
 
